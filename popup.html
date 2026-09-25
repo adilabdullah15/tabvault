@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Static skeleton: paints instantly on first click, hydrated by popup.js -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">TV</span>
+      <span class="name">TabVault</span>
+    </div>
+    <div id="backupPill" class="backup-pill"><span class="dot"></span><span>Loading…</span></div>
+  </header>
+
+  <div class="palette">
+    <svg class="search-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <line x1="10.8" y1="10.8" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <input id="search" type="text" placeholder="Search tabs across workspaces…" autocomplete="off" spellcheck="false">
+    <kbd>/</kbd>
+  </div>
+
+  <nav id="wsBar" class="ws-bar" aria-label="Workspaces">
+    <div class="skel-chip"></div><div class="skel-chip"></div><div class="skel-chip"></div>
+  </nav>
+
+  <main id="content" class="content">
+    <div class="skel-row"></div><div class="skel-row"></div><div class="skel-row"></div>
+    <div class="skel-row"></div><div class="skel-row"></div>
+  </main>
+
+  <footer class="actions">
+    <button id="btnSnapshot" class="btn primary" title="Save a snapshot of all open windows now (Alt+Shift+S)">
+      ⤓ Snapshot now
+    </button>
+    <button id="btnFeedback" class="btn icon" title="Send feedback">💬</button>
+    <button id="btnGithub" class="btn icon" title="Developer on GitHub">💻</button>
+    <button id="btnOptions" class="btn icon" title="Settings, import / export">⚙</button>
+  </footer>
+
+<script src="lib/store.js"></script>
+<script src="lib/ui.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

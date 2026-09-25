@@ -1,0 +1,46 @@
+{
+  "action": {
+    "default_icon": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "TabVault"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "description": "Open TabVault",
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      }
+    },
+    "save-snapshot": {
+      "description": "Save a snapshot of the current window now",
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      }
+    }
+  },
+  "description": "A tab workspace that never loses your work: automatic snapshots, named workspaces, search and one-click restore.",
+  "icons": {
+    "128": "icons/icon128.png",
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png"
+  },
+  "manifest_version": 3,
+  "name": "TabVault",
+  "options_page": "options.html",
+  "permissions": [
+    "tabs",
+    "storage",
+    "alarms",
+    "contextMenus"
+  ],
+  "version": "1.1.0"
+}

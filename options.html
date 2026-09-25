@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TabVault Settings</title>
+<style>
+  :root {
+    --bg: #0f141b; --bg2: #161d27; --bg3: #1d2634;
+    --line: #26303f; --txt: #e8eef6; --mut: #8b98ab;
+    --acc: #5eead4; --acc-dim: rgba(94,234,212,.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--txt);
+    font: 14px/1.6 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; }
+  .logo {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: linear-gradient(135deg, #0d9488, #5eead4);
+    color: #06231f; font-weight: 800; font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .sub { color: var(--mut); margin: 0 0 24px; }
+  .card {
+    background: var(--bg2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;
+  }
+  .card h2 { font-size: 14px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .8px; color: var(--mut); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0; }
+  .row label { font-weight: 600; }
+  .row .desc { color: var(--mut); font-size: 12.5px; font-weight: 400; display: block; }
+  select, input[type="number"] {
+    background: var(--bg3); color: var(--txt);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 7px 10px; font-size: 13px;
+  }
+  .switch { position: relative; width: 44px; height: 24px; flex: none; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute; inset: 0; cursor: pointer;
+    background: var(--bg3); border: 1px solid var(--line); border-radius: 24px;
+    transition: .2s;
+  }
+  .slider:before {
+    content: ""; position: absolute; height: 16px; width: 16px;
+    left: 3px; top: 3px; background: var(--mut); border-radius: 50%; transition: .2s;
+  }
+  .switch input:checked + .slider { background: var(--acc-dim); border-color: var(--acc); }
+  .switch input:checked + .slider:before { transform: translateX(20px); background: var(--acc); }
+  .btn {
+    border: 1px solid var(--line); background: var(--bg3); color: var(--txt);
+    border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--acc); }
+  .btn.primary { background: linear-gradient(135deg,#0d9488,#14b8a6); border: none; color: #04211d; font-weight: 700; }
+  .btn.danger { color: #fda4af; }
+  .btnrow { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pro {
+    border: 1px dashed var(--acc); border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 16px; background: var(--acc-dim);
+  }
+  .pro h2 { margin: 0 0 6px; font-size: 15px; }
+  .pro ul { margin: 8px 0 0; padding-left: 18px; color: var(--mut); font-size: 13px; }
+  .pro .price { font-size: 20px; font-weight: 800; color: var(--acc); }
+  kbd { font: 11px monospace; border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; background: var(--bg); color: var(--mut); }
+  .saved { color: var(--acc); font-size: 12.5px; opacity: 0; transition: opacity .2s; }
+  .saved.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="logo">TV</span> TabVault Settings</h1>
+  <p class="sub">Automatic snapshots, workspaces and backup — tuned your way.</p>
+
+  <div class="card">
+    <h2>Automatic backup</h2>
+    <div class="row">
+      <label>Auto snapshot <span class="desc">Quietly save every open window on a timer and whenever tabs change.</span></label>
+      <label class="switch"><input type="checkbox" id="optAuto"><span class="slider"></span></label>
+    </div>
+    <div class="row">
+      <label>Snapshot interval <span class="desc">How often the timer snapshot runs (1–120 minutes).</span></label>
+      <input type="number" id="optInterval" min="1" max="120" step="1" style="width:80px">
+    </div>
+    <div class="row">
+      <label>History per workspace <span class="desc">Older snapshots are pruned automatically (5–100).</span></label>
+      <input type="number" id="optMax" min="5" max="100" step="1" style="width:80px">
+    </div>
+    <div class="row">
+      <label>Skip incognito windows <span class="desc">Never capture tabs from private windows.</span></label>
+      <label class="switch"><input type="checkbox" id="optIncognito"><span class="slider"></span></label>
+    </div>
+    <div class="row">
+      <span class="saved" id="savedMsg">Saved ✓</span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Shortcuts</h2>
+    <div class="row">
+      <label>Open TabVault <span class="desc">Default <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> — change at chrome://extensions/shortcuts</span></label>
+    </div>
+    <div class="row">
+      <label>Snapshot now <span class="desc">Default <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></span></label>
+    </div>
+    <div class="row">
+      <label>Focus search <span class="desc">Press <kbd>/</kbd> inside the popup</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Import / Export</h2>
+    <p class="sub" style="margin:0 0 12px">Your vault is stored locally in this browser. Export a JSON backup any time, or move it to another machine.</p>
+    <div class="btnrow">
+      <button class="btn primary" id="btnExport">⤓ Export vault (JSON)</button>
+      <button class="btn" id="btnImport">⤒ Import vault</button>
+      <input type="file" id="fileImport" accept="application/json,.json" style="display:none">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Feedback</h2>
+    <p class="sub" style="margin:0 0 12px">Found a bug or have an idea? We read everything.</p>
+    <div class="btnrow">
+      <button class="btn primary" id="btnFeedback">💬 Send feedback</button>
+    </div>
+  </div>
+
+  <div class="pro">
+    <h2>TabVault Pro <span class="price">~$4/mo</span></h2>
+    <div style="font-size:13px">Free covers unlimited local workspaces, search and import/export — forever.</div>
+    <ul>
+      <li>🔐 Encrypted cross-device sync</li>
+      <li>🕘 Full version history (never pruned)</li>
+      <li>👥 Shared workspaces for teams</li>
+    </ul>
+    <div style="margin-top:10px"><button class="btn" id="btnPro" disabled>Coming soon</button></div>
+  </div>
+
+  <div class="card">
+    <h2>About</h2>
+    <div class="row">
+      <label>TabVault <span class="desc">Built with care by <b style="color:var(--txt)">Adil Abdullah Khan</b></span></label>
+    </div>
+    <div class="btnrow">
+      <a class="btn" style="text-decoration:none" href="https://github.com/adilabdullah15" target="_blank" rel="noopener">💻 GitHub profile</a>
+      <a class="btn" style="text-decoration:none" href="https://github.com/adilabdullah15/tabvault" target="_blank" rel="noopener">⭐ Star on GitHub</a>
+      <a class="btn" style="text-decoration:none" href="https://github.com/adilabdullah15/tabvault/issues" target="_blank" rel="noopener">🐛 Report an issue</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Danger zone</h2>
+    <div class="btnrow">
+      <button class="btn danger" id="btnWipe">Delete all workspaces &amp; snapshots</button>
+    </div>
+  </div>
+</div>
+
+<script src="lib/store.js"></script>
+<script src="lib/ui.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
