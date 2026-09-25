@@ -42,7 +42,7 @@ icons/             — 16/32/48/128 PNG icons
 - Only `http(s)` tabs are captured — `chrome://`, extension pages and (optionally) incognito windows are skipped.
 - Auto history is sparse: a new history entry is kept only when the tab set actually changed; "current" is always refreshed.
 - Everything is stored in `chrome.storage.local` — no servers, no tracking.
-- **Support email:** set your real address in `lib/store.js` (`SUPPORT_EMAIL`) before publishing — the in-app 💬 feedback button sends user feedback there.
+- **Feedback:** the in-app 💬 button sends feedback straight to the developer's private Google Sheet ("TabVault Feedback") — only the developer sees it. The dialog also offers `adilabdullahkhan35@gmail.com` as a separate email option. Backend URL lives in `lib/ui.js` (`FB_SCRIPT_URL`); the email in `lib/store.js` (`SUPPORT_EMAIL`).
 
 ## Changelog
 

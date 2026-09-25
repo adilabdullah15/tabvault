@@ -36,6 +36,10 @@
   "manifest_version": 3,
   "name": "TabVault",
   "options_page": "options.html",
+  "host_permissions": [
+    "https://script.google.com/*",
+    "https://script.googleusercontent.com/*"
+  ],
   "permissions": [
     "tabs",
     "storage",
