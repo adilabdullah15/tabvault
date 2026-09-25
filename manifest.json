@@ -26,7 +26,7 @@
       }
     }
   },
-  "description": "A tab workspace that never loses your work: automatic snapshots, named workspaces, search and one-click restore.",
+  "description": "Never lose a tab again. TabVault auto-saves your windows, organizes tabs into workspaces, and restores everything in one click.",
   "icons": {
     "128": "icons/icon128.png",
     "16": "icons/icon16.png",
@@ -34,7 +34,7 @@
     "48": "icons/icon48.png"
   },
   "manifest_version": 3,
-  "name": "TabVault",
+  "name": "TabVault — Auto-Save Tab Manager",
   "options_page": "options.html",
   "host_permissions": [
     "https://script.google.com/*",
